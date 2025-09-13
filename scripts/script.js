@@ -74,15 +74,15 @@ function render() {
     // console.log("filtro de status: ", filtro)
 
     // aplica filtros de status e busca
-    const filtradas = tarefas.filter( function(t) {
+    const filtradas = tarefas.filter( function(tarefa) {
         // se filtro for "todas", aceita qualquer status
         // senão - compara com t.status
-        const okStatus = filtro === "todas" ? true : t.status === filtro;
+        const okStatus = filtro === "todas" ? true : tarefa.status === filtro;
 
         // se houver termo, verifica se titulo contem esse termo
         // se usuário digitar algo, só aceita a tarefa se for igual ao que o usuário digitou
         // se usuário não digitar nada - retorna a lista completa(true)
-        const okBusca = termo ? t.titulo.toLowerCase().includes(termo) : true
+        const okBusca = termo ? tarefa.titulo.toLowerCase().includes(termo) : true
 
         return okStatus && okBusca
     })
@@ -111,5 +111,70 @@ function render() {
         const check = document.createElement('input')
         check.type = "checkbox"
         check.checked = t.status === "concluida"
+
+        // ao mudar o check, redesenha na tela
+        check.addEventListener('change', function(){
+            t.status = check.checked ? "concluida" : "pendente"
+            render()
+        })
+
+        // select de status: pendente / concluida / andamento
+        const select = document.createElement('select')
+        const listaSelect = ["pendente", "andamento", "concluida"]
+
+        listaSelect.forEach(function(status) {
+            const option = document.createElement('option')
+            option.value = status
+
+            // capitaliza(deixa em maiusculo) a primeira letra de cada palavra
+            option.textContent = status.charAt(0).toUpperCase() + status.slice(1)
+
+            if(t.status === status) option.selected = true;
+            select.appendChild(option)
+        })
+
+        // ao mudar o select, atualiza e redesenha na tela
+        select.addEventListener('change', function() {
+            t.status = select.value
+            render()
+        })
+
+        // botão remover
+        const botao = document.createElement('button');
+        botao.textContent = "X";
+        botao.className = "remover";
+
+        // recebe o evento de click e filtra uma nova lista
+        botao.addEventListener('click', function() {
+            tarefas = tarefas.filter(apagar => apagar.id !== t.id)
+            render();
+        })
+
+
+        // adicionando os filhos da div acoes
+        acoes.appendChild(check)
+        acoes.appendChild(select)
+        acoes.appendChild(botao)
+
+        // adicionando os filhos do li
+        li.appendChild(h3)
+        li.appendChild(acoes)
+
+        // adicionando os filhos do ul (#id: lista-tarefas - variavel elLista)
+        elLista.appendChild(li)
     })
+
+    // texto aparece somente se o array de filtradas existir algo
+    // caso contrário, recebe display: none (some da tela)
+    elVazio.style.display = filtradas.length ? "none" : "block"
 }
+
+// Filtrar
+// Quando usuário mudar a opção de filtro por status
+elFiltroStatus.addEventListener('change', render)
+
+// Quando usuário digitar algo no campo de busca
+elFiltroBusca.addEventListener('input', render)
+
+//primeira renderização / atualização de informações 
+render()
