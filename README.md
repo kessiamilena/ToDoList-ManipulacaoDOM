@@ -120,19 +120,19 @@ Re-renderização simples chamando uma função render() sempre que o estado mud
 
 ## ✅ Checklist de Aula
 
-Adicionar uma nova tarefa
+&check Adicionar uma nova tarefa
 
-Marcar como concluída/pendente via checkbox
+&check Marcar como concluída/pendente via checkbox
 
-Mudar status pelo select
+&check Mudar status pelo select
 
-Remover tarefa (botão X)
+&check Remover tarefa (botão X)
 
-Filtrar por status
+&check Filtrar por status
 
-Buscar por termo
+&check Buscar por termo
 
-Tratar lista vazia
+&check Tratar lista vazia
 
 ## 🛠️ Personalização
 
