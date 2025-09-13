@@ -66,7 +66,7 @@ Lê filtros (#filtro-status, #filtro-busca);
 
 Filtra tarefas em memória;
 
-Limpa <ul> e recria os <li> com:
+Limpa `<ul>` e recria os `<li>` com:
 
 <h3> (título),
 
