@@ -68,13 +68,13 @@ Filtra tarefas em memória;
 
 Limpa `<ul>` e recria os `<li>` com:
 
-<h3> (título),
+`<h3>` (título),
 
-<input type="checkbox"> (concluída/pendente),
+`<input type="checkbox">` (concluída/pendente),
 
-<select> (pendente/andamento/concluída),
+`<select>` (pendente/andamento/concluída),
 
-<button class="remover"> (excluir).
+`<button class="remover">` (excluir).
 
 Mostra/oculta a mensagem “lista vazia”.
 
