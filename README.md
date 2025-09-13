@@ -112,7 +112,7 @@ Busca: por termo no título (case-insensitive)
 
 e.preventDefault() no submit para não recarregar a página.
 
-dataset.id para ligar o <li> ao objeto da tarefa.
+dataset.id para ligar o `<li>` ao objeto da tarefa.
 
 Capitalização do select: status.charAt(0).toUpperCase() + status.slice(1).
 
